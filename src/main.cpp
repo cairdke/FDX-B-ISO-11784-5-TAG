@@ -80,11 +80,7 @@ void buildFDXFrame() {
     for (uint8_t i = 0; i < 64; i++)
         rawDataBits[i] = (idBlock >> i) & 1;
 
-    Serial.print("Raw Data Bits: ");
-    for (uint8_t i = 0; i < 64; i++) {
-        Serial.print(rawDataBits[i],BIN);        
-    }
-    Serial.println();//reverseBits(rawDataBits, 64);    
+       
 
     // 4. Compute CRC
     //uint16_t crc = computeFDXBCRC(rawDataBits, 64);
