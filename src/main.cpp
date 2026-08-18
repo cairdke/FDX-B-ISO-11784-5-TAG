@@ -16,10 +16,10 @@ const uint8_t OUT_PIN = 2;
 // --- Your tag parameters (edit these for your own IDs) ---
 const uint64_t NATIONAL_ID   = 98100661108;  // 38-bit, 12 Character National ID (LSB-first)
 const uint16_t COUNTRY_CODE  = 578;             // 10-bit 3-digit ISO 3166-1 numeric country code (LSB-first)
-const bool     DATA_BLOCK    = false;
-const bool     ANIMAL_FLAG   = true;
+const bool     DATA_BLOCK    = false;  // true = include extended data, false = no extended data
+const bool     ANIMAL_FLAG   = true;  // true = animal, false = non-animal
 const uint32_t EXTENDED_DATA = 0;
-const uint16_t INTER_FRAME_BITS = 200;
+const uint16_t INTER_FRAME_BITS = 500;
 
 // --- Frame + DBP buffers ---
 uint8_t frameBits[128];
@@ -119,7 +119,11 @@ void buildFDXFrame() {
     while (idx < 128)
         pushBit(0, idx);
     
-       
+    Serial.print("Raw Data Bits: ");
+    for (uint8_t i = 0; i < 128; i++) {
+        Serial.print(frameBits[i],BIN);        
+    }
+    Serial.println();//reverseBits(rawDataBits, 64); 
     
 }
 
